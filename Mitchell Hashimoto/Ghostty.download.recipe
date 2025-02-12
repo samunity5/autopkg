@@ -3,6 +3,8 @@
 <plist version="1.0">
 <dict>
     <key>Comment</key>
+    <string>Created with Recipe Robot v2.3.2 (https://github.com/homebysix/recipe-robot)</string>
+    <key>Description</key>
     <string>Downloads the latest version of Ghostty.</string>
     <key>Identifier</key>
     <string>jumpcloud-password-manager.download.Ghostty</string>
@@ -10,29 +12,46 @@
     <dict>
         <key>NAME</key>
         <string>Ghostty</string>
-        <key>RELEASE_URL_BASE</key>
-        <string>https://release.files.ghostty.org/</string>
     </dict>
     <key>MinimumVersion</key>
     <string>2.3</string>
     <key>Process</key>
     <array>
+        <!-- Step 1: Extract the latest download URL -->
         <dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%RELEASE_URL_BASE%latest/Ghostty.dmg</string>
+                <string>https://ghostty.org/download</string>
+                <key>re_pattern</key>
+                <string>https://release\.files\.ghostty\.org/[^/]+/Ghostty\.dmg</string>
+                <key>result_output_var_name</key>
+                <string>download_url</string>
+            </dict>
+        </dict>
+        <!-- Step 2: Download the latest version -->
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%download_url%</string>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
             </dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
         </dict>
+        <!-- Step 3: End of check phase -->
         <dict>
             <key>Processor</key>
             <string>EndOfCheckPhase</string>
         </dict>
+        <!-- Step 4: Verify code signature -->
         <dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
             <key>Arguments</key>
             <dict>
                 <key>input_path</key>
@@ -40,10 +59,11 @@
                 <key>requirement</key>
                 <string>identifier "com.mitchellh.ghostty" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "24VZTF6M5V"</string>
             </dict>
-            <key>Processor</key>
-            <string>CodeSignatureVerifier</string>
         </dict>
+        <!-- Step 5: Extract version number -->
         <dict>
+            <key>Processor</key>
+            <string>Versioner</string>
             <key>Arguments</key>
             <dict>
                 <key>input_plist_path</key>
@@ -51,8 +71,6 @@
                 <key>plist_version_key</key>
                 <string>CFBundleShortVersionString</string>
             </dict>
-            <key>Processor</key>
-            <string>Versioner</string>
         </dict>
     </array>
 </dict>
