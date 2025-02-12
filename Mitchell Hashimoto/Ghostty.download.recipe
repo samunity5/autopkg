@@ -29,10 +29,10 @@
         <dict>
             <key>Arguments</key>
             <dict>
-                <key>argument</key>
-                <string>href="([^"]*Ghostty\.dmg)"</string>
                 <key>file_path</key>
                 <string>%pathname%/index.html</string>
+                <key>re_pattern</key>
+                <string>href="([^"]*Ghostty\.dmg)"</string>
             </dict>
             <key>Processor</key>
             <string>URLTextSearcher</string>
