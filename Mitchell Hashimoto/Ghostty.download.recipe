@@ -10,7 +10,7 @@
     <dict>
         <key>NAME</key>
         <string>Ghostty</string>
-        <key>RELEASE_URL</key>
+        <key>RELEASE_URL_BASE</key>
         <string>https://release.files.ghostty.org/</string>
     </dict>
     <key>MinimumVersion</key>
@@ -21,27 +21,7 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>%RELEASE_URL%</string>
-            </dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>file_path</key>
-                <string>%pathname%/index.html</string>
-                <key>re_pattern</key>
-                <string>href="([^"]*Ghostty\.dmg)"</string>
-            </dict>
-            <key>Processor</key>
-            <string>URLTextSearcher</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>url</key>
-                <string>%RELEASE_URL%%found_url%</string>
+                <string>%RELEASE_URL_BASE%latest/Ghostty.dmg</string>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
             </dict>
