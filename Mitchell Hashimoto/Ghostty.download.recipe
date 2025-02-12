@@ -1,59 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>Comment</key>
-	<string>Created with Recipe Robot v2.3.2 (https://github.com/homebysix/recipe-robot)</string>
-	<key>Description</key>
-	<string>Downloads the latest version of Ghostty.</string>
-	<key>Identifier</key>
-	<string>jumpcloud-password-manager.download.Ghostty</string>
-	<key>Input</key>
-	<dict>
-		<key>NAME</key>
-		<string>Ghostty</string>
-	</dict>
-	<key>MinimumVersion</key>
-	<string>2.3</string>
-	<key>Process</key>
-	<array>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>filename</key>
-				<string>%NAME%.dmg</string>
-				<key>url</key>
-				<string>https://release.files.ghostty.org/*/Ghostty.dmg</string>
-			</dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>input_path</key>
-				<string>%pathname%/Ghostty.app</string>
-				<key>requirement</key>
-				<string>identifier "com.mitchellh.ghostty" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "24VZTF6M5V"</string>
-			</dict>
-			<key>Processor</key>
-			<string>CodeSignatureVerifier</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>input_plist_path</key>
-				<string>%pathname%/Ghostty.app/Contents/Info.plist</string>
-				<key>plist_version_key</key>
-				<string>CFBundleShortVersionString</string>
-			</dict>
-			<key>Processor</key>
-			<string>Versioner</string>
-		</dict>
-	</array>
-</dict>
-</plist>
+Identifier: com.github.autopkg.wardsparadox.download.Ghostty
+Description: Downloads the latest version of Ghostty.
+Comment: Originally created by @discentem, ownership transferred
+
+Input:
+  NAME: Ghostty
+MinimumVersion: "2.3"
+Process:
+  - Processor: URLTextSearcher
+    Arguments:
+      url: https://ghostty.org/download
+      re_pattern: 'https:\/\/release\.files\.ghostty\.org\/\d+\.\d+\.\d+\/Ghostty\.dmg'
+  - Processor: EndOfCheckPhase
+  - Processor: URLDownloader
+    Arguments:
+      url: "%match%"
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: "%pathname%/Ghostty.app"
+      requirement: 'identifier "com.mitchellh.ghostty" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "24VZTF6M5V"'
+  - Processor: Versioner
+    Arguments:
+      input_plist_path: "%pathname%/Ghostty.app/Contents/Info.plist"
+      plist_version_key: CFBundleShortVersionString
+
+  - Processor: FileMover
+    Arguments:
+      source: "%pathname%"
+      target: "%RECIPE_CACHE_DIR%/Ghostty-%version%.dmg"
