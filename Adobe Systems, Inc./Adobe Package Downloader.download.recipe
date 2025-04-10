@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Comment</key>
+	<string>Created with Recipe Robot v2.3.2 (https://github.com/homebysix/recipe-robot)</string>
+	<key>Description</key>
+	<string>Downloads the latest version of Adobe Package Downloader.</string>
+	<key>Identifier</key>
+	<string>unity5.download.AdobePackageDownloader</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>Adobe Package Downloader</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>2.3</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>filename</key>
+				<string>%NAME%.dmg</string>
+				<key>url</key>
+				<string>https://tron-prod-customized-user-packages.s3.amazonaws.com/8157c8ec-c92e-4be8-84e0-58d3edd7d880_MacOSDownloader?X-Amz-Security-Token=IQoJb3JpZ2luX2VjECoaCXVzLWVhc3QtMSJHMEUCIAM%2BYPOw4xpKWyjJqm0wtdKEAdhtsfVP7%2BgxxAbU82yXAiEAh0NT%2BsMBhwn1bOQOXFmuRKYoEMcKrUoF%2Fmzr%2BKFmrN8qvAUIo%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgwxNjcyNTUzMjYwNDUiDOQ4cM5GNF%2BomAFzoCqQBWXsmzgUvnsCRAxLI3WFqGbgvAOaObC8RXhKovqu5ICzHwBCXJvPZYvLoBx4IRl7WpOHjLmqdfbjgJzuxeEvErgyrrDSH0TaKev%2BCiLzT4hdWFLfGH8LDhFAymklkmEMD4ekg2sNlT5ftRNX7256LQL%2F3hVVmr1dltjW1O0nO9ymkBlW7YctXjK91EwlU8F%2FiIVfqfh%2FreEqmFhpuAedkr4oEZSSb7vM9Ru9%2BvRFpcHw3gUtm7cLzOI04%2FxQvMFMag36mS8j3GmYOmgwG1Ex3pU6fJR1sgSeQAGyl%2BtEfQqkjwBMO%2FB4fq2Hm5xJpjgNrtotGTM%2FlXO2CQo76xVBRC3eU%2FFWcfNQtr1mCQyLmoRvB9FPZydRlH0F6GYnFZuhAQ7ufbhFh83CoWu21z3r6t%2FB3c70qSn8bjQLa5CMuGARR3AjV39AY4mNG3YA9r19JkKSOHBX%2FoUMfZGeyUWJt0QYIofB97ODYPn12fU4J0GDbz8gv%2BgAHJGxtu6jRCoMjQAiH%2BJ6G%2BDqkCUzJ%2FGp0C2tliELkflAaVGtql0GMPYhGu%2FNU4GpMrSFtNoaQQYsQtE1k3LccurM5s4CyetSbN7YtbyGDMD1EtUUbU2%2BkdQkjqJ7Dw00oLt0Jo44zDHdbhhZ2QrFfhGMJ3KIv26fc18aX3UGF8KfSmdBxXTH7Fe5MTwhAbSgSsr69cuPY9jlYUix0NFjtnGhY5d403iRovlJLh7d8sV3sWFDtjdhbO3Qv260EtKecG6KY0vNFKNgcN4vsqUmCPGDDdJgRkueLU3SzzSNQyQl1Vx%2BeMqfzeDrwFa71bIQrVUpGMAGYN3bG7alIGSYUK1rbl3mSGEFcRWb9klLhUgsLyA6NkJuxkP6MPOg3r8GOrEBZDVIET7RpVeE3uK7yIdqIMowvxYnm9nO2FM7X8fd24cAuMGB644q9ICh7CXcVSQXuGgnKIh1gRFV4GpxHLm4U8EpsfgTcPU1SksA8%2FGfv1pUkLr6c7mG7rb01qw0aS%2BBb2lVusJTJAxhU2BUX5IiMrFg6BuV04V23j0XSa8SKmuklGx4xJu2rQqL5NWyr3n0PcBpp68Sn%2FoAdG9Ue%2ByAtZ0BPPyjRkStbnBHbs2E%2Fvd2&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20250410T103115Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=900&amp;X-Amz-Credential=ASIASN4JRXVOQ5JRM4ZT%2F20250410%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=ac9a3322fcf9287c686aab4dc08477a7a4e5f1942cf2e36009856637e2dc9990</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>EndOfCheckPhase</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>input_path</key>
+				<string>%pathname%/Adobe Package Downloader.app</string>
+				<key>requirement</key>
+				<string>anchor apple generic and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = JQ525L2MZD)</string>
+			</dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>input_plist_path</key>
+				<string>%pathname%/Adobe Package Downloader.app/Contents/Info.plist</string>
+				<key>plist_version_key</key>
+				<string>CFBundleShortVersionString</string>
+			</dict>
+			<key>Processor</key>
+			<string>Versioner</string>
+		</dict>
+	</array>
+</dict>
+</plist>
